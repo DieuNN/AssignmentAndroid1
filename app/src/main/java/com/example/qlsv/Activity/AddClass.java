@@ -13,4 +13,6 @@ public class AddClass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_class);
     }
+
+
 }
