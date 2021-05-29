@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.qlsv.Adapter.DialogBox;
+import com.example.qlsv.Adapter.ConfirmDeleteDialog;
 import com.example.qlsv.R;
 
 public class AddClass extends AppCompatActivity {
@@ -34,7 +34,7 @@ public class AddClass extends AppCompatActivity {
     }
 
     public void openDialog(){
-        DialogBox dialog = new DialogBox();
+        ConfirmDeleteDialog dialog = new ConfirmDeleteDialog();
         dialog.show(getSupportFragmentManager(), "Example dialog");
     }
 
