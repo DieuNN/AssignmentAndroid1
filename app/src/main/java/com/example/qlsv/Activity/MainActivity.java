@@ -46,3 +46,5 @@ public class MainActivity extends AppCompatActivity {
         studentManagement = findViewById(R.id.btnStudentManagement);
     }
 }
+
+//Added some comments and testing 
