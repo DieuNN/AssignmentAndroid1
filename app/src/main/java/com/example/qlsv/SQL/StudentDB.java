@@ -43,8 +43,8 @@ public class StudentDB {
                 Student student = new Student();
                 student.setId(cursor.getString(0));
                 student.setName(cursor.getString(1));
-                student.setDOB(cursor.getString(2));
-                student.setClassName(cursor.getString(3));
+                student.setDOB(cursor.getString(3));
+                student.setClassName(cursor.getString(2));
 
                 list.add(student);
                 cursor.moveToNext();
@@ -52,5 +52,30 @@ public class StudentDB {
         }
         cursor.close();
         return list;
+    }
+
+    public boolean updateStudent(String newName, String newClassName, String newDOB, String currentID){
+        database = db.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name", newName);
+        values.put("classid",  newClassName);
+        values.put("dob", newDOB);
+
+        if(database.update(db.TABLE_STUDENT, values, "id = ?", new String[]{currentID})>=0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean deleteStudent(String currentID) {
+        database = db.getWritableDatabase();
+
+        if(database.delete(db.TABLE_STUDENT, "id = ?", new String[]{currentID})>=0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

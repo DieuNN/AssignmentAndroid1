@@ -49,7 +49,29 @@ public class ClassDB {
         }
 
         cursor.close();
-
         return list;
+    }
+
+    public boolean updateClass(String currentID, String newName) {
+        database = db.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name", newName);
+
+        if(database.update(db.TABLE_CLASS, values, "id = ?", new String[]{currentID})>=0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteClass(String currentID) {
+        database = db.getWritableDatabase();
+
+        if(database.delete(db.TABLE_CLASS, "id = ?", new String[]{currentID})>=0) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }

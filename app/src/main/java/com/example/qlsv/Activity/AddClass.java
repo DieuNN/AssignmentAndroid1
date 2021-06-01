@@ -57,12 +57,32 @@ public class AddClass extends AppCompatActivity {
                 }
             }
         });
+
+        imageButtonEditClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PolyClass polyClass = new PolyClass();
+                if(txtClassId.getText().toString().matches("")||txtClassName.getText().toString().matches("")){
+                    Toast.makeText(AddClass.this, "Bạn phải nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(classDB.updateClass(txtClassId.getText().toString(), txtClassName.getText().toString())){
+                    Toast.makeText(AddClass.this, "Thay đổi tên lớp thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AddClass.this, "Thay đổi thất bại, không tìm thấy mã lớp!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        txtClassName.setText(intent.getStringExtra("name"));
+        txtClassId.setText(intent.getStringExtra("id"));
     }
 
     private void mapping() {
         imageButtonAddClass = findViewById(R.id.btnAddClass);
         txtClassId = findViewById(R.id.txtClassID);
         txtClassName = findViewById(R.id.txtClassName);
+        imageButtonEditClass = findViewById(R.id.btnEditClass);
 
         PolyClassDAO dao = new PolyClassDAO();
 

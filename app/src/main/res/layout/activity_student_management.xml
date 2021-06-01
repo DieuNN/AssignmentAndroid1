@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".Activity.StudentManagement">
 
+    <TextView
+        android:id="@+id/txtIfStudentListEmpty"
+        android:layout_width="297dp"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:text="Có vẻ bạn chưa có sinh viên nào, hãy thêm một sinh viên mới bằng nút thêm mới ở góc dưới màn hình!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/studentManagementListView"
         android:layout_width="398dp"

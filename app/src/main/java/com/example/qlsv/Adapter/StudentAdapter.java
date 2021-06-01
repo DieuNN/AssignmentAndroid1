@@ -35,10 +35,10 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         className = convertView.findViewById(R.id.lblStudentClassName);
         DOB = convertView.findViewById(R.id.lblStudentDOB);
 
-        name.setText(getItem(position).getName());
-        id.setText(getItem(position).getId());
-        className.setText(getItem(position).getClassName());
-        DOB.setText(getItem(position).getDOB());
+        name.setText("Tên: "+getItem(position).getName());
+        id.setText("Mã số SV: " + getItem(position).getId());
+        className.setText("Tên lớp: " + getItem(position).getClassName());
+        DOB.setText("Ngày sinh: "+ getItem(position).getDOB());
 
         return convertView;
     }
