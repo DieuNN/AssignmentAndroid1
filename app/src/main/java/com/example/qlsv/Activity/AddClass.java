@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.qlsv.DAO.PolyClassDAO;
 import com.example.qlsv.Model.PolyClass;
 import com.example.qlsv.R;
+import com.example.qlsv.SQL.ClassDB;
 import com.example.qlsv.SQL.Database;
 
 import java.util.ArrayList;
@@ -24,10 +25,8 @@ import java.util.ArrayList;
 public class AddClass extends AppCompatActivity {
     ImageButton imageButtonAddClass, imageButtonEditClass;
     EditText txtClassName, txtClassId;
-    Database database;
+    final Database database = new Database(AddClass.this);
     Intent intent;
-    PolyClassDAO dao;
-    ClassList classList;
     Cursor cursor;
     ArrayList<PolyClass> list;
 
@@ -37,16 +36,34 @@ public class AddClass extends AppCompatActivity {
         setContentView(R.layout.activity_add_class);
         mapping();
 
+        ClassDB classDB = new ClassDB(database);
 
+        imageButtonAddClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PolyClass polyClass = new PolyClass();
+                if(txtClassId.getText().toString().matches("")||txtClassName.getText().toString().matches("")){
+                    Toast.makeText(AddClass.this, "Bạn phải nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                polyClass.setId(txtClassId.getText().toString());
+                polyClass.setName(txtClassName.getText().toString());
+
+                if(classDB.addClass(polyClass)){
+                    Toast.makeText(AddClass.this, "Thêm mới thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AddClass.this, "Thêm mới thất bại! Mã lớp đã có trong dữ liệu!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void mapping() {
         imageButtonAddClass = findViewById(R.id.btnAddClass);
         txtClassId = findViewById(R.id.txtClassID);
         txtClassName = findViewById(R.id.txtClassName);
-        database = new Database(AddClass.this);
-        imageButtonEditClass = findViewById(R.id.btnEditClass);
+
         PolyClassDAO dao = new PolyClassDAO();
 
         intent = getIntent();

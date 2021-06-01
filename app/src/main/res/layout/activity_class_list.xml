@@ -6,12 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ClassList">
 
+    <TextView
+        android:id="@+id/txtIfClassListEmpty"
+        android:layout_width="222dp"
+        android:layout_height="115dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
+
     <ListView
         android:id="@+id/listViewClass"
         android:layout_width="421dp"
         android:layout_height="674dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        >
+
+    </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>

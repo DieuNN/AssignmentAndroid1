@@ -13,6 +13,8 @@ import com.example.qlsv.Adapter.OptionDialog;
 import com.example.qlsv.Adapter.StudentAdapter;
 import com.example.qlsv.Model.Student;
 import com.example.qlsv.R;
+import com.example.qlsv.SQL.Database;
+import com.example.qlsv.SQL.StudentDB;
 
 import java.util.ArrayList;
 
@@ -22,29 +24,21 @@ public class StudentManagement extends AppCompatActivity {
     ImageButton button;
     Intent intent;
 
+    final Database database = new Database(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_management);
         mapping();
-
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        studentArrayList.add(new Student("ID1", "Dieu", "Lop 1", "20122002"));
-        listView.setAdapter(new StudentAdapter(getApplicationContext(), R.layout.student_row, studentArrayList));
+        StudentDB studentDB = new StudentDB(database);
+        StudentAdapter studentAdapter = new StudentAdapter(StudentManagement.this, R.layout.class_row, studentDB.getAllStudent());
+        listView.setAdapter(studentAdapter);
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                OptionDialog dialog = new OptionDialog();
-                dialog.show(getSupportFragmentManager(), "edit");
                 return false;
             }
         });
@@ -56,6 +50,7 @@ public class StudentManagement extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        studentAdapter.notifyDataSetChanged();
     }
 
     private void mapping() {
