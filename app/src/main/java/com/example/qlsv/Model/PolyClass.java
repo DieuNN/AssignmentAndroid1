@@ -9,6 +9,10 @@ public class PolyClass {
         this.name = name;
     }
 
+
+    public PolyClass() {
+    }
+
     public String getId() {
         return Id;
     }

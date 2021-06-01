@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/txtClassName"
-        android:layout_width="243dp"
-        android:layout_height="52dp"
+        android:layout_width="216dp"
+        android:layout_height="51dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:ems="10"
@@ -23,16 +23,16 @@
 
     <EditText
         android:id="@+id/txtClassID"
-        android:layout_width="243dp"
-        android:layout_height="52dp"
+        android:layout_width="217dp"
+        android:layout_height="49dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintHorizontal_bias="0.277"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/txtClassName"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.028" />
 
     <TextView
         android:id="@+id/textView"
@@ -52,9 +52,10 @@
         android:layout_height="61dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588"
+        app:layout_constraintVertical_bias="0.586"
         app:srcCompat="@drawable/ic_baseline_add_24"
         tools:ignore="VectorDrawableCompat" />
 
@@ -69,5 +70,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.424" />
+
+    <ImageButton
+        android:id="@+id/btnEditClass"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.586"
+        app:srcCompat="@drawable/ic_baseline_edit_24"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
