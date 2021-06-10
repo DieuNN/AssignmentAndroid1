@@ -58,18 +58,25 @@ public class ClassList extends AppCompatActivity {
 
         }
 
+        listViewClass.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ClassList.this, EditClass.class);
+                ArrayList<PolyClass> list = classDB.getAllClass();
+                intent.putExtra("name", list.get(position).getName());
+                intent.putExtra("id", list.get(position).getId());
+                startActivity(intent);
+            }
+        });
+
         listViewClass.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ClassList.this);
-                builder.setTitle("Thông báo").setMessage("Bạn muốn sửa hay xóa?").setNegativeButton("Sửa", new DialogInterface.OnClickListener() {
+                builder.setTitle("Thông báo").setMessage("Bạn muốn xóa?").setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ClassList.this, AddClass.class);
-                         ArrayList<PolyClass> list = classDB.getAllClass();
-                         intent.putExtra("name", list.get(position).getName());
-                         intent.putExtra("id", list.get(position).getId());
-                        startActivity(intent);
+
                     }
                 }).setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
@@ -82,9 +89,13 @@ public class ClassList extends AppCompatActivity {
                         }
                     }
                 }).show();
-                return false;
+                return true;
             }
         });
+
+
+
+
 
     }
 

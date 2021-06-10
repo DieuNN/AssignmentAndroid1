@@ -47,7 +47,6 @@ public class StudentManagement extends AppCompatActivity {
             txtIfStudentListEmpty.setVisibility(View.VISIBLE);
         } else {
             listView.setVisibility(View.VISIBLE);
-
             listView.setAdapter(studentAdapter);
             txtIfStudentListEmpty.setVisibility(View.INVISIBLE);
         }
@@ -56,17 +55,10 @@ public class StudentManagement extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(StudentManagement.this);
-                builder.setTitle("Thông báo").setMessage("Bạn muốn sửa hay xóa?").setNegativeButton("Sửa", new DialogInterface.OnClickListener() {
+                builder.setTitle("Thông báo").setMessage("Bạn muốn xóa?").setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ArrayList<Student> list = new ArrayList<>();
-                        list = studentDB.getAllStudent();
-                        Intent intent = new Intent(StudentManagement.this, AddStudent.class);
-                        intent.putExtra("name", list.get(position).getName());
-                        intent.putExtra("id", list.get(position).getId());
-                        intent.putExtra("classname","");
-                        intent.putExtra("dob", list.get(position).getDOB());
-                        startActivity(intent);
+
                     }
                 }).setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
@@ -80,7 +72,23 @@ public class StudentManagement extends AppCompatActivity {
                         }
                     }
                 }).show();
-                return false;
+                return true;
+            }
+        });
+
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ArrayList<Student> list = new ArrayList<>();
+                list = studentDB.getAllStudent();
+                Intent intent = new Intent(StudentManagement.this, EditStudent.class);
+                intent.putExtra("name", list.get(position).getName());
+                intent.putExtra("id", list.get(position).getId());
+                intent.putExtra("classname","");
+                intent.putExtra("dob", list.get(position).getDOB());
+                startActivity(intent);
             }
         });
 

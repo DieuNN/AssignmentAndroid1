@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QLSV">
+        <activity android:name=".Activity.EditStudent"></activity>
+        <activity android:name=".Activity.EditClass" />
         <activity android:name=".Activity.AddStudent" />
         <activity android:name=".Activity.StudentManagement" />
         <activity android:name=".Activity.ClassList" />
