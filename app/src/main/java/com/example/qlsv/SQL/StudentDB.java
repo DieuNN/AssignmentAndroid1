@@ -27,9 +27,12 @@ public class StudentDB {
         values.put("DOB", student.getDOB());
 
         if(database.insert(db.TABLE_STUDENT, null, values)>=0){
+            database.close();
             return true;
+
         }
         return false;
+
     }
 
     public ArrayList<Student> getAllStudent() {
@@ -51,6 +54,7 @@ public class StudentDB {
             }
         }
         cursor.close();
+        database.close();
         return list;
     }
 
@@ -63,7 +67,9 @@ public class StudentDB {
         values.put("dob", newDOB);
 
         if(database.update(db.TABLE_STUDENT, values, "id = ?", new String[]{currentID})>=0) {
+            database.close();
             return true;
+
         } else {
             return false;
         }
@@ -73,6 +79,7 @@ public class StudentDB {
         database = db.getWritableDatabase();
 
         if(database.delete(db.TABLE_STUDENT, "id = ?", new String[]{currentID})>=0) {
+            database.close();
             return true;
         } else {
             return false;

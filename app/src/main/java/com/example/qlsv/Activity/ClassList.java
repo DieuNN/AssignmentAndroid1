@@ -4,10 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,15 +42,14 @@ public class ClassList extends AppCompatActivity {
         mapping();
 
 
-
         ArrayList<PolyClass> list = classDB.getAllClass();
+        ClassAdapter adapter = new ClassAdapter(ClassList.this, R.layout.class_row, list);
 
-        if(list.size()==0){
+        if (list.size() == 0) {
             listViewClass.setVisibility(View.INVISIBLE);
             txtIfClassListEmpty.setText("Bạn chưa có lớp nào. Hãy thêm một lớp mới!");
         } else {
             txtIfClassListEmpty.setVisibility(View.INVISIBLE);
-            ClassAdapter adapter = new ClassAdapter(this, R.layout.class_row, list);
             adapter.notifyDataSetChanged();
             listViewClass.setAdapter(adapter);
 
@@ -81,7 +78,8 @@ public class ClassList extends AppCompatActivity {
                 }).setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(classDB.deleteClass(list.get(position).getId())){
+                        if (classDB.deleteClass(list.get(position).getId())) {
+                            adapter.notifyDataSetChanged();
                             Toast.makeText(ClassList.this, "Xóa thành công!", Toast.LENGTH_SHORT).show();
                             onResume();
                         } else {
@@ -92,9 +90,6 @@ public class ClassList extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
 
 
     }

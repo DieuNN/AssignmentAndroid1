@@ -40,7 +40,7 @@ public class StudentManagement extends AppCompatActivity {
         mapping();
         StudentDB studentDB = new StudentDB(database);
         StudentAdapter studentAdapter = new StudentAdapter(this, R.layout.student_row, studentDB.getAllStudent());
-
+        listView.setAdapter(studentAdapter);
 
         if (studentDB.getAllStudent().size() == 0) {
             listView.setVisibility(View.INVISIBLE);

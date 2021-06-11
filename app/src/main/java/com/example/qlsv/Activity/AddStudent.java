@@ -121,21 +121,7 @@ public class AddStudent extends AppCompatActivity {
         intent.getStringExtra("classname");
         edtChooseDate.setText(intent.getStringExtra("dob"));
         
-        btnEditStudent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(edtStudentId.getText().toString().matches("")||edtStudentName.getText().toString().matches("")){
-                    Toast.makeText(AddStudent.this, "Bạn phải nhập đủ các trường!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                if(studentDB.updateStudent(edtStudentName.getText().toString(),spinner.getSelectedItem().toString(), edtChooseDate.getText().toString(), edtStudentId.getText().toString())) {
-                    Toast.makeText(AddStudent.this, "Thay đổi thông tin sinh viên thành công!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(AddStudent.this, "Thay đổi thông tin thất bại! Không tìm thấy Mã sinh viên mà bạn nhập", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
         
     }
 
@@ -146,7 +132,6 @@ public class AddStudent extends AppCompatActivity {
         btnAddNewStudent = findViewById(R.id.btnAddNewStudent);
         edtStudentName = findViewById(R.id.edtStudentName);
         edtStudentId = findViewById(R.id.edtStudentId);
-        btnEditStudent =  findViewById(R.id.btnEditStudent);
     }
 
 

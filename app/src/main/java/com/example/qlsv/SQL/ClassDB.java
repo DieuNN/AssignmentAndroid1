@@ -25,6 +25,7 @@ public class ClassDB {
         values.put("name", polyClass.getName());
 
         if (database.insert(db.TABLE_CLASS, null, values) >= 0) {
+            database.close();
             return true;
         }
         return false;
@@ -49,6 +50,7 @@ public class ClassDB {
         }
 
         cursor.close();
+        database.close();
         return list;
     }
 
@@ -68,6 +70,7 @@ public class ClassDB {
         database = db.getWritableDatabase();
 
         if(database.delete(db.TABLE_CLASS, "id = ?", new String[]{currentID})>=0) {
+            database.close();
             return true;
         } else {
             return false;
